@@ -100,6 +100,13 @@
     transform: translateY(0) scale(0.97);
   }
 
+  .heart-btn.active-state {
+    background: linear-gradient(135deg, rgba(255,255,255,0.35), rgba(230,180,255,0.25));
+    box-shadow: 
+      0 4px 40px rgba(220, 170, 255, 0.6), 
+      inset 0 0 25px rgba(255,255,255,0.3);
+  }
+
   @keyframes fadeInBtn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -128,7 +135,7 @@
   <div class="title">Amy Shell&nbsp; ♡</div>
   <div class="btn-container">
     <button class="heart-btn" id="heartBtn">✨ Magia ✨</button>
-    <button class="heart-btn" id="toggleCursorBtn">✨ Seguir Cursor: ON ✨</button>
+    <button class="heart-btn" id="toggleCursorBtn">✨ Guiar brillitos ✨</button>
   </div>
 </div>
 
@@ -163,12 +170,11 @@ function randomColorPair() {
 }
 
 const mouse = { x: W / 2, y: H / 2, active: false, lastMove: 0 };
-let cursorTrackingEnabled = true;
+let cursorTrackingEnabled = false;
 
 document.getElementById('toggleCursorBtn').addEventListener('click', () => {
   cursorTrackingEnabled = !cursorTrackingEnabled;
-  const btn = document.getElementById('toggleCursorBtn');
-  btn.innerText = cursorTrackingEnabled ? '✨ Seguir Cursor: ON ✨' : '✨ Seguir Cursor: OFF ✨';
+  document.getElementById('toggleCursorBtn').classList.toggle('active-state', cursorTrackingEnabled);
 });
 
 window.addEventListener('mousemove', (e) => {
